@@ -1,6 +1,6 @@
 define apt::conf($ensure, $content = false, $source = false) {
   if $content {
-    file {"/etc/apt/apt.conf.d/${name}":
+    file {"modules:///etc/apt/apt.conf.d/${name}":
       ensure  => $ensure,
       content => $content,
       before  => Exec["apt-get_update"],
