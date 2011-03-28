@@ -37,9 +37,14 @@ class apt {
     ensure => present,
     source => "puppet:///modules/apt/10periodic",
   }
+  exec { "aptitude_update":
+    command => "aptitude update",
+    refreshonly => true,
+  }
 
   exec { "apt-get_update":
     command => "apt-get update",
     refreshonly => true,
+    notify => Exec["aptitude_update"],
   }
 }
